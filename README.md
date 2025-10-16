@@ -115,7 +115,7 @@ This step established **tactical context** — proving that the infection occurr
 ---
 
 ### 🧬 Step 10: Threat Intelligence Enrichment (VirusTotal)  
-![Chronicle13](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle18.png)  
+![Chronicle13](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle18.png)  
 The **VT Augment** widget revealed the malicious file from the suspicious domain.  
 - **48/69 security vendors** flagged it as **malicious**.  
 - File type: `Win32 EXE`, size: **385 KB**, flagged under **Trojan.Loader** category.  
@@ -124,7 +124,7 @@ This correlation verified that the **downloaded payload** was already recognized
 ---
 
 ### 🧰 Step 11: Mandiant Intelligence Correlation  
-![Chronicles14](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicles17.png)  
+![Chronicles14](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle17.png)  
 Cross-referencing with **Mandiant Threat Intelligence**, the domain `manygoodnews.com` was rated with a **score of 100** and had links to historical ransomware activity.  
 While not directly attributing, the indicators matched profiles related to **Windows-based loaders** with **anti-VM and memory allocation evasion**.  
 This suggested the macro chain was possibly delivering a **commodity loader** from known ransomware infrastructure.
