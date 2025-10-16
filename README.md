@@ -100,10 +100,12 @@ I opened the **Events tab** of the case `suspicious_download_office`. Two correl
 Both were generated under the **RULE** source, confirming Chronicle detected not just a single anomaly but a **multi-vector correlation** between process execution and suspicious web activity.  
 From the context menu, I reviewed **“Manage Alert Detection Rule”** to verify detection logic and thresholds.
 
+![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle20.png)  
+
 ---
 
 ### 🌐 Step 9: MITRE Technique & Domain Association  
-![Chronicle12](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle12.png)  
+![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle19.png)   
 Here, Chronicle automatically mapped the case to **MITRE ATT&CK T1204.002 – User Execution (Malicious File)**.  
 - The domain **`manygoodnews.com`** was confirmed as contacted during execution.  
 - Chronicle displayed **3 suggested mitigations**, including **User Training (M1017)**, to reduce recurrence.  
@@ -113,7 +115,7 @@ This step established **tactical context** — proving that the infection occurr
 ---
 
 ### 🧬 Step 10: Threat Intelligence Enrichment (VirusTotal)  
-![Chronicle13](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle13.png)  
+![Chronicle13](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle18.png)  
 The **VT Augment** widget revealed the malicious file from the suspicious domain.  
 - **48/69 security vendors** flagged it as **malicious**.  
 - File type: `Win32 EXE`, size: **385 KB**, flagged under **Trojan.Loader** category.  
@@ -122,7 +124,7 @@ This correlation verified that the **downloaded payload** was already recognized
 ---
 
 ### 🧰 Step 11: Mandiant Intelligence Correlation  
-![Chronicles14](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicles14.png)  
+![Chronicles14](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicles17.png)  
 Cross-referencing with **Mandiant Threat Intelligence**, the domain `manygoodnews.com` was rated with a **score of 100** and had links to historical ransomware activity.  
 While not directly attributing, the indicators matched profiles related to **Windows-based loaders** with **anti-VM and memory allocation evasion**.  
 This suggested the macro chain was possibly delivering a **commodity loader** from known ransomware infrastructure.
@@ -130,7 +132,7 @@ This suggested the macro chain was possibly delivering a **commodity loader** fr
 ---
 
 ### 🔄 Step 12: Similar Cases & Entity Correlation  
-![Chronicle15](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle15.png)  
+![Chronicle15](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle16.png)  
 I examined **Similar Cases** in Chronicle SOAR.  
 Multiple prior incidents had identical **entity matches** (`208.91.197.46`, `manygoodnews.com`) and **MITRE T1204.002** correlation.  
 The majority were labeled **Critical**, confirming a **recurring attack pattern** in the organization.  
@@ -140,7 +142,7 @@ This validated that our **detection rule** was effectively catching repeat infec
 ---
 
 ### ⚙️ Step 13: Reviewing the Malware Detection Playbook  
-![Chronicle16](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle16.png)  
+![Chronicle16](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle15.png)  
 I analyzed the **SOAR playbook** linked to the case — “Malware Detection.”  
 It automated:
 - Indicator enrichment via **VirusTotal & Mandiant APIs**  
@@ -153,7 +155,7 @@ This workflow ensured **repeatable, low-latency containment** whenever similar d
 ---
 
 ### 🧭 Step 14: Event Mapping & Entity Extraction  
-![Chronicle17](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle17.png)  
+![Chronicle17](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle14.png)  
 In **Event Configuration → Ontology Mapping**, I validated that Chronicle correctly parsed entity relationships:
 - **SourceUserName**, **SourceAddress**, and **DestinationDomain** were correctly extracted from UDM events.  
 This confirmed our **rule visualization** aligned with Chronicle’s **entity graph**, ensuring process and network links were rendered accurately.
@@ -161,7 +163,7 @@ This confirmed our **rule visualization** aligned with Chronicle’s **entity gr
 ---
 
 ### ⏱️ Step 15: Event Timeline Reconstruction  
-![Chronicle18](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle18.png)  
+![Chronicle18](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle13.png)  
 The **event timeline** displayed simultaneous hits:
 - **PROCESS_LAUNCH** and **NETWORK_HTTP**  
 Both referenced artifacts tied to `C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE16\EXCEL.EXE`, pinpointing that **Excel triggered network traffic** within seconds of launch.  
@@ -170,14 +172,14 @@ This timing validated the **macro execution sequence**.
 ---
 
 ### 📑 Step 16: Compact Correlation Summary  
-![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle19.png)  
+![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle12.png)  
 In the **Compact Event View**, both process and network detections were grouped.  
 This simplified visualization confirmed the **rule correlation** consistency — Chronicle’s logic was performing as intended across all ingestion windows.
 
 ---
 
 ### 🧩 Step 17: Endpoint-Level Forensics (UDM Query View)  
-![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle20.png)  
+![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle11.png)  
 Finally, I executed a **UDM Query** for process and DNS artifacts.  
 - Hostname: `mikeross-pc`  
 - Event: `PROCESS_START` + `DnsRequest`  
