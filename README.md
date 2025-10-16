@@ -1,85 +1,96 @@
 ## 🧩 Suspicious Macro Activity — SOC Investigation Walkthrough using Google Chronicle
 
-The **Google Chronicle SOC dashboard** lit up with an alert titled **“Suspicious Macro Activity”**, signaling possible malicious activity from a Microsoft Office application.
+While monitoring my **Google Chronicle SIEM dashboard**, I noticed a new high-priority alert titled **“Suspicious Macro Activity.”**  
+This immediately suggested that a **Microsoft Office process** might be involved in executing or downloading a malicious payload — a common indicator of a macro-based attack.
 
 ---
 
-### 🕵️ Step 1: Alert Trigger — Initial Detection  
+### 🕵️ Step 1: Initial Alert — AI Detection and Recommendation  
 ![Chronicle1](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)  
-AI automatically assessed the case, identifying an **Office macro** that downloaded an executable file from a suspicious site.  
-Key indicators surfaced:
-- **Technique:** MITRE `T1204.002 – User Execution`
-- **Malicious file:** `C:\Program Files\Microsoft Office\Office16\Excel.exe`
-- **Malicious domain:** `manygoodnews.com`
+As soon as I opened the case, Chronicle’s **AI Investigation Assistant** automatically analyzed the detection and presented actionable insights.  
+It identified that **Excel.exe** had established a suspicious network connection to an external host.  
+
+**AI Summary included:**
+- **MITRE Technique:** `T1204.002 – User Execution`
+- **Malicious File:** `C:\Program Files\Microsoft Office\Office16\Excel.exe`
+- **Domain:** `manygoodnews.com`
 - **External IP:** `208.91.197.46`
-- **User:** `STEVE-WATSON`, **Host:** `STEVE-WATSON-PC`
+- **User:** `STEVE-WATSON` | **Host:** `STEVE-WATSON-PC`
 
-Recommended actions:
-1. Quarantine `Excel.exe`  
-2. Block `208.91.197.46`  
-3. Block `manygoodnews.com`  
-4. Investigate user and process behavior  
+**Chronicle AI recommended:**
+1. Quarantine the `Excel.exe` process  
+2. Block the IP and domain  
+3. Investigate the user session and spawned process tree  
+
+These guided steps helped me immediately focus on containment.
 
 ---
 
-### 📄 Step 2: Case Overview and Alert Summary  
+### 📄 Step 2: Validating the Alert and Case Context  
 ![Chronicle2](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)  
-The SOC analyst reviewed the **case overview**, confirming the alert **SUSPICIOUS_DOWNLOAD_OFFICE**.  
-The AI module flagged it as **High Priority**, attaching a **Malware Detection playbook** for automation.
+Next, I validated the alert details in the **Case Overview**.  
+The alert **“SUSPICIOUS_DOWNLOAD_OFFICE”** was automatically categorized as *High Priority* and linked to a **Malware Detection playbook**, enabling automated enrichment and triage workflows.
 
 ---
 
-### 🧱 Step 3: Case Wall and SLA Tasking  
+### 🧱 Step 3: Documenting My Investigation — Case Wall and SLA Tracking  
 ![Chronicle3](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)  
 ![Chronicle4](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle4.png)  
-In the **Case Wall**, analysts logged internal actions:
-- Escalated case priority from *High* to *Critical*.
-- Added a task to **fix SLA compliance**, assigned to `@Administrator`.
-
-These ensure accountability and workflow visibility during the triage.
+Within the **Case Wall**, I documented my findings, escalated the case priority to *Critical*, and created a new task titled **“Fix SLA”**.  
+This ensured the response time remained within service-level targets and added accountability by assigning it directly to the SOC administrator.
 
 ---
 
-### 🌐 Step 4: Entity Correlation  
+### 🌐 Step 4: Entity Correlation — Uncovering the Full Picture  
 ![Chronicle5](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle5.png)  
-The **Entities Highlights** section mapped all relevant data points:
-- User, host, processes, IPs, domains, MITRE technique, and file hashes.
-- `STEVE-WATSON-PC` and internal IP `10.205.11.20` repeatedly appeared, confirming localized infection attempts.
+Using Chronicle’s **Entity Highlights**, I identified 15 entities linked to this case:
+- User: `STEVE-WATSON`  
+- Host: `STEVE-WATSON-PC`  
+- Internal IPs: `10.205.11.20`, `10.205.11.2`  
+- MITRE Technique: `T1204.002`  
+- Domain: `manygoodnews.com`  
+- Process ID: `22895`  
+
+The repeated appearance of the same user, host, and IP combination confirmed this was not an isolated alert, but a **persistent infection** attempt.
 
 ---
 
-### 🧠 Step 5: Visual Attack Graph  
+### 🧠 Step 5: Visualizing the Attack Chain  
 ![Chronicle6](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle6.png)  
 ![Chronicle7](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle7.png)  
-Chronicle’s **graph view** linked the entire chain:
-`STEVE-WATSON → EXCEL.EXE → manygoodnews.com → 208.91.197.46`  
-Red nodes highlighted confirmed malicious entities, showing that **multiple hosts** accessed the same infected source.
+I visualized the incident in Chronicle’s **Case Graph**, which clearly mapped the entire infection chain:
+Red nodes marked confirmed malicious indicators.  
+Multiple connections from different hosts validated that the attack was **spreading via shared macro-laced documents**.
 
 ---
 
-### 🎯 Step 6: Target Entities and Response Actions  
+### 🎯 Step 6: Target Entities and Response Options  
 ![Chronicle8](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle8.png)  
-The **Target Entities panel** allowed quick decision-making:  
-Analysts could choose to investigate host activity, escalate to the SOC manager, or inform the customer.
+Chronicle presented **Target Entities** (user, host, IPs, and domains) alongside **Response Options** such as:
+- Deep investigation of host telemetry  
+- Escalation to SOC Manager  
+- Customer environment notification  
+
+This step helped me align the immediate containment actions with escalation workflows.
 
 ---
 
-### 🧩 Step 7: Process and DNS Evidence  
+### 🧩 Step 7: Validating Process and DNS Artifacts  
 ![Chronicle9](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle9.png)  
 ![Chronicle10](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle10.png)  
-CrowdStrike Falcon logs confirmed:
-- A **process start event** on `STEVE-WATSON-PC`.
-- `5 DNS requests` to suspicious domains from the same asset (`mikeross-pc` also appeared laterally).
-
-This validated both **endpoint and network correlation**, confirming that the macro-initiated Excel process communicated with an external malware domain.
+To confirm the scope, I reviewed **CrowdStrike Falcon** and **UDM** telemetry.  
+Logs verified a **process start event** on `STEVE-WATSON-PC` and **five DNS requests** to `manygoodnews.com`.  
+Interestingly, a second host, `mikeross-pc`, exhibited identical behavior, indicating lateral movement of the same macro payload.
 
 ---
 
-### ✅ Summary  
-This investigation revealed a **macro-enabled Office attack** that executed `Excel.exe` to fetch malicious payloads.  
-Through Chronicle’s AI triage, entity graphing, and event correlation:
-- The SOC team quickly traced infection sources.  
-- Containment actions were initiated (quarantine, IP/domain block).  
-- Cross-host evidence confirmed propagation risk, prompting escalation.
+### ✅ Investigation Outcome  
+This investigation confirmed a **macro-enabled malware infection** that executed through Excel and reached out to an external command source.  
 
-> The story of this case shows Chronicle’s power to transform raw telemetry into a clear, visualized threat narrative.
+Through **AI-driven triage**, **entity correlation**, and **multi-source validation**, I was able to:
+- Pinpoint infection origin and verify propagation.
+- Block and quarantine malicious indicators.
+- Validate both endpoint and network behavior across hosts.
+- Escalate the case for automated SOAR playbook execution.
+
+> This hands-on investigation demonstrates how **Google Chronicle** combines AI analytics, visualization, and automation to turn raw telemetry into a full attack narrative — reducing response time and increasing threat visibility.
