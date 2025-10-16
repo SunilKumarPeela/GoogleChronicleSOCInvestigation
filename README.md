@@ -85,14 +85,14 @@ Interestingly, a second host, `mikeross-pc`, exhibited identical behavior, indic
 ---
 
 ## 🧠 Phase 2 — Deep Investigation, Threat Intelligence & SOAR Automation  
-*(Chronicle Images 11–20)*  
+
 
 After identifying the **Suspicious Macro Activity**, I continued my investigation within **Google Chronicle**, diving deeper into rule-based events, threat intelligence feeds, and automation flows to confirm and mitigate the threat.
 
 ---
 
 ### 🧩 Step 8: Correlated Events and Rule Validation  
-![Chronicle11](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle11.png)  
+![Chronicle11](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle12.png)  
 I opened the **Events tab** of the case `suspicious_download_office`. Two correlated rule events stood out:  
 - **NETWORK_HTTP** — A malicious outbound connection.  
 - **PROCESS_LAUNCH** — Execution of `C:\Program Files\Microsoft Office\Office16\Excel.exe`.  
