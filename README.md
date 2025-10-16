@@ -26,11 +26,11 @@ Grouping events by hostname revealed that both `mikeross-pc` and `steve-watson-p
 Entity extraction automatically highlighted domains, IPs, and users.  
 Payload analysis showed identical file sizes, suggesting the same binary was downloaded multiple times.
 
-![Initial Alert](images/Chronicle1.jpg)
-![Chronicle Search Timeline](images/Chronicle2.jpg)
-![Grouped Hosts](images/chronicle3.png)
-![Entity Extraction](images/Chronicle4.png)
-![Payload Consistency](images/Chronicle5.png)
+![Initial Alert](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpghttps://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
+![Chronicle Search Timeline](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)
+![Grouped Hosts](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.pnghttps://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)
+![Entity Extraction](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle4.png)
+![Payload Consistency](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle5.png)
 
 > 🟢 *Impact:* Rapidly identified the malicious pattern and confirmed multiple infected hosts — turning a single alert into a coordinated campaign discovery.
 
