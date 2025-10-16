@@ -23,6 +23,8 @@ Two systems—`mikeross-pc` and `steve-watson-pc`—showed identical behavior.
 > 🟢 *Impact:* Identified a coordinated infection vector within minutes.
 
 ![Alert](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
+![Timeline](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)
+![GroupedHosts](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)
 
 ---
 
