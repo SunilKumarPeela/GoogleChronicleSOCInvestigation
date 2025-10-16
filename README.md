@@ -26,7 +26,7 @@ Grouping events by hostname revealed that both `mikeross-pc` and `steve-watson-p
 Entity extraction automatically highlighted domains, IPs, and users.  
 Payload analysis showed identical file sizes, suggesting the same binary was downloaded multiple times.
 
-![Initial Alert] (https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpghttps://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
+![Initial Alert](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpghttps://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
 ![Chronicle Search Timeline](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)
 ![Grouped Hosts](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.pnghttps://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)
 ![Entity Extraction](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle4.png)
