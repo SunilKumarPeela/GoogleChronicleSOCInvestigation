@@ -155,7 +155,7 @@ This workflow ensured **repeatable, low-latency containment** whenever similar d
 ---
 
 ### 🧭 Step 14: Event Mapping & Entity Extraction  
-![Chronicle17](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle14.png)  
+![Chronicle17](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicles14.png)  
 In **Event Configuration → Ontology Mapping**, I validated that Chronicle correctly parsed entity relationships:
 - **SourceUserName**, **SourceAddress**, and **DestinationDomain** were correctly extracted from UDM events.  
 This confirmed our **rule visualization** aligned with Chronicle’s **entity graph**, ensuring process and network links were rendered accurately.
@@ -163,7 +163,7 @@ This confirmed our **rule visualization** aligned with Chronicle’s **entity gr
 ---
 
 ### ⏱️ Step 15: Event Timeline Reconstruction  
-![Chronicle18](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle13.png)  
+![Chronicle18](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle13.png)  
 The **event timeline** displayed simultaneous hits:
 - **PROCESS_LAUNCH** and **NETWORK_HTTP**  
 Both referenced artifacts tied to `C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE16\EXCEL.EXE`, pinpointing that **Excel triggered network traffic** within seconds of launch.  
@@ -172,14 +172,14 @@ This timing validated the **macro execution sequence**.
 ---
 
 ### 📑 Step 16: Compact Correlation Summary  
-![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle12.png)  
+![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle12.png)  
 In the **Compact Event View**, both process and network detections were grouped.  
 This simplified visualization confirmed the **rule correlation** consistency — Chronicle’s logic was performing as intended across all ingestion windows.
 
 ---
 
 ### 🧩 Step 17: Endpoint-Level Forensics (UDM Query View)  
-![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle11.png)  
+![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle11.png)  
 Finally, I executed a **UDM Query** for process and DNS artifacts.  
 - Hostname: `mikeross-pc`  
 - Event: `PROCESS_START` + `DnsRequest`  
