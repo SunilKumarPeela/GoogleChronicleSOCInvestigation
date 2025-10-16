@@ -22,7 +22,7 @@ I pivoted into Chronicle Search and quickly saw repeated 514 KB downloads from *
 Two systems—`mikeross-pc` and `steve-watson-pc`—showed identical behavior.  
 > 🟢 *Impact:* Identified a coordinated infection vector within minutes.
 
-![Alert](images/Chronicle1.jpg)
+![Alert](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
 
 ---
 
