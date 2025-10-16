@@ -84,13 +84,113 @@ Interestingly, a second host, `mikeross-pc`, exhibited identical behavior, indic
 
 ---
 
-### ✅ Investigation Outcome  
-This investigation confirmed a **macro-enabled malware infection** that executed through Excel and reached out to an external command source.  
+## 🧠 Phase 2 — Deep Investigation, Threat Intelligence & SOAR Automation  
+*(Chronicle Images 11–20)*  
 
-Through **AI-driven triage**, **entity correlation**, and **multi-source validation**, I was able to:
-- Pinpoint infection origin and verify propagation.
-- Block and quarantine malicious indicators.
-- Validate both endpoint and network behavior across hosts.
-- Escalate the case for automated SOAR playbook execution.
+After identifying the **Suspicious Macro Activity**, I continued my investigation within **Google Chronicle**, diving deeper into rule-based events, threat intelligence feeds, and automation flows to confirm and mitigate the threat.
 
-> This hands-on investigation demonstrates how **Google Chronicle** combines AI analytics, visualization, and automation to turn raw telemetry into a full attack narrative — reducing response time and increasing threat visibility.
+---
+
+### 🧩 Step 8: Correlated Events and Rule Validation  
+![Chronicle11](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle11.png)  
+I opened the **Events tab** of the case `suspicious_download_office`. Two correlated rule events stood out:  
+- **NETWORK_HTTP** — A malicious outbound connection.  
+- **PROCESS_LAUNCH** — Execution of `C:\Program Files\Microsoft Office\Office16\Excel.exe`.  
+
+Both were generated under the **RULE** source, confirming Chronicle detected not just a single anomaly but a **multi-vector correlation** between process execution and suspicious web activity.  
+From the context menu, I reviewed **“Manage Alert Detection Rule”** to verify detection logic and thresholds.
+
+---
+
+### 🌐 Step 9: MITRE Technique & Domain Association  
+![Chronicle12](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle12.png)  
+Here, Chronicle automatically mapped the case to **MITRE ATT&CK T1204.002 – User Execution (Malicious File)**.  
+- The domain **`manygoodnews.com`** was confirmed as contacted during execution.  
+- Chronicle displayed **3 suggested mitigations**, including **User Training (M1017)**, to reduce recurrence.  
+
+This step established **tactical context** — proving that the infection occurred via **user-triggered macro execution**.
+
+---
+
+### 🧬 Step 10: Threat Intelligence Enrichment (VirusTotal)  
+![Chronicle13](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle13.png)  
+The **VT Augment** widget revealed the malicious file from the suspicious domain.  
+- **48/69 security vendors** flagged it as **malicious**.  
+- File type: `Win32 EXE`, size: **385 KB**, flagged under **Trojan.Loader** category.  
+This correlation verified that the **downloaded payload** was already recognized across major vendors — confirming **high confidence** in the detection.
+
+---
+
+### 🧰 Step 11: Mandiant Intelligence Correlation  
+![Chronicles14](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicles14.png)  
+Cross-referencing with **Mandiant Threat Intelligence**, the domain `manygoodnews.com` was rated with a **score of 100** and had links to historical ransomware activity.  
+While not directly attributing, the indicators matched profiles related to **Windows-based loaders** with **anti-VM and memory allocation evasion**.  
+This suggested the macro chain was possibly delivering a **commodity loader** from known ransomware infrastructure.
+
+---
+
+### 🔄 Step 12: Similar Cases & Entity Correlation  
+![Chronicle15](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle15.png)  
+I examined **Similar Cases** in Chronicle SOAR.  
+Multiple prior incidents had identical **entity matches** (`208.91.197.46`, `manygoodnews.com`) and **MITRE T1204.002** correlation.  
+The majority were labeled **Critical**, confirming a **recurring attack pattern** in the organization.  
+
+This validated that our **detection rule** was effectively catching repeat infections of the same malware variant.
+
+---
+
+### ⚙️ Step 13: Reviewing the Malware Detection Playbook  
+![Chronicle16](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle16.png)  
+I analyzed the **SOAR playbook** linked to the case — “Malware Detection.”  
+It automated:
+- Indicator enrichment via **VirusTotal & Mandiant APIs**  
+- Artifact isolation  
+- EDR containment triggers  
+- Ticket escalation to SOC L2  
+
+This workflow ensured **repeatable, low-latency containment** whenever similar detections arise.
+
+---
+
+### 🧭 Step 14: Event Mapping & Entity Extraction  
+![Chronicle17](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle17.png)  
+In **Event Configuration → Ontology Mapping**, I validated that Chronicle correctly parsed entity relationships:
+- **SourceUserName**, **SourceAddress**, and **DestinationDomain** were correctly extracted from UDM events.  
+This confirmed our **rule visualization** aligned with Chronicle’s **entity graph**, ensuring process and network links were rendered accurately.
+
+---
+
+### ⏱️ Step 15: Event Timeline Reconstruction  
+![Chronicle18](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle18.png)  
+The **event timeline** displayed simultaneous hits:
+- **PROCESS_LAUNCH** and **NETWORK_HTTP**  
+Both referenced artifacts tied to `C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE16\EXCEL.EXE`, pinpointing that **Excel triggered network traffic** within seconds of launch.  
+This timing validated the **macro execution sequence**.
+
+---
+
+### 📑 Step 16: Compact Correlation Summary  
+![Chronicle19](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle19.png)  
+In the **Compact Event View**, both process and network detections were grouped.  
+This simplified visualization confirmed the **rule correlation** consistency — Chronicle’s logic was performing as intended across all ingestion windows.
+
+---
+
+### 🧩 Step 17: Endpoint-Level Forensics (UDM Query View)  
+![Chronicle20](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle20.png)  
+Finally, I executed a **UDM Query** for process and DNS artifacts.  
+- Hostname: `mikeross-pc`  
+- Event: `PROCESS_START` + `DnsRequest`  
+- Source: **CrowdStrike Falcon**  
+This indicated that **another internal endpoint** communicated with the same malicious domain — proof of **lateral exposure**.  
+
+---
+
+### ✅ Investigation Closure Summary  
+After combining Chronicle’s **event correlation**, **VirusTotal reputation**, and **Mandiant enrichment**, I concluded that:
+- `Excel.exe` was exploited by a macro to download a payload from **manygoodnews.com**.  
+- The payload was a **Windows loader**, confirmed by multiple vendors.  
+- Several hosts attempted outbound communication to the same IOC.  
+- Automation via **Chronicle SOAR** executed containment, blocking the domain/IP and alerting EDR to quarantine affected processes.  
+
+> This marks the closure of the macro-based threat chain — a clear demonstration of how Chronicle integrates **multi-source telemetry, MITRE mapping, and SOAR automation** into a seamless investigation workflow.
