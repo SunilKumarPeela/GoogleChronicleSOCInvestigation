@@ -45,10 +45,10 @@ The visual map linked
 showing both infected machines with high risk scores (95).  
 Timeline correlation confirmed the process execution order.
 
-![Case Overview](images/Chronicle6.png)
-![Case Graph View](images/Chronicle7.png)
-![Risk Overlay](images/Chronicle8.png)
-![Timeline Correlation](images/Chronicle9.png)
+![Case Overview](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle6.png)
+![Case Graph View](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle7.png)
+![Risk Overlay](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle8.png)
+![Timeline Correlation](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle9.png)
 
 > 🟢 *Impact:* Consolidated raw telemetry into an attack storyline — revealing process lineage and victim endpoints clearly.
 
