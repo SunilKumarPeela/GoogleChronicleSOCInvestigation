@@ -1,184 +1,85 @@
-# 🧠 End-to-End SOC Investigation & Automation using Google Chronicle SIEM + SOAR
+## 🧩 Suspicious Macro Activity — SOC Investigation Walkthrough using Google Chronicle
 
-> **Author:** [Sunil Kumar Peela](https://linkedin.com/in/sunilkumarpeela) | 📧 sunilryo@colostate.edu  
-> **Theme:** Detection → Investigation → Automation → Reporting  
-> **Framework:** MITRE ATT&CK T1204 – User Execution  
+The **Google Chronicle SOC dashboard** lit up with an alert titled **“Suspicious Macro Activity”**, signaling possible malicious activity from a Microsoft Office application.
 
 ---
 
-## 🎯 Overview
-This project recreates a complete **Security Operations Center (SOC)** workflow inside **Google Chronicle** — starting from a single macro-based malware alert and ending with a fully automated detection and response pipeline.  
-It demonstrates how I used **Chronicle SIEM**, **Chronicle SOAR**, and **Mandiant Threat Intelligence** to investigate, enrich, and contain a suspicious macro campaign, all while automating every stage.
+### 🕵️ Step 1: Alert Trigger — Initial Detection  
+![Chronicle1](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)  
+AI automatically assessed the case, identifying an **Office macro** that downloaded an executable file from a suspicious site.  
+Key indicators surfaced:
+- **Technique:** MITRE `T1204.002 – User Execution`
+- **Malicious file:** `C:\Program Files\Microsoft Office\Office16\Excel.exe`
+- **Malicious domain:** `manygoodnews.com`
+- **External IP:** `208.91.197.46`
+- **User:** `STEVE-WATSON`, **Host:** `STEVE-WATSON-PC`
+
+Recommended actions:
+1. Quarantine `Excel.exe`  
+2. Block `208.91.197.46`  
+3. Block `manygoodnews.com`  
+4. Investigate user and process behavior  
 
 ---
 
-## 📖 The Story
+### 📄 Step 2: Case Overview and Alert Summary  
+![Chronicle2](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)  
+The SOC analyst reviewed the **case overview**, confirming the alert **SUSPICIOUS_DOWNLOAD_OFFICE**.  
+The AI module flagged it as **High Priority**, attaching a **Malware Detection playbook** for automation.
 
 ---
 
-### 🧩 1. The Trigger – Discovery of a Suspicious Office Download
-Everything began with an alert titled **“suspicious_download_office.”**  
-Chronicle flagged that `Excel.exe` made an unexpected HTTP request — an uncommon behavior for an Office process.
+### 🧱 Step 3: Case Wall and SLA Tasking  
+![Chronicle3](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)  
+![Chronicle4](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle4.png)  
+In the **Case Wall**, analysts logged internal actions:
+- Escalated case priority from *High* to *Critical*.
+- Added a task to **fix SLA compliance**, assigned to `@Administrator`.
 
-I pivoted into **Chronicle Search** and found repeated 514 KB downloads from **manygoodnews.com**.  
-Grouping events by hostname revealed that both `mikeross-pc` and `steve-watson-pc` showed identical patterns, confirming the spread of a potential macro payload.
-
-Entity extraction automatically highlighted domains, IPs, and users.  
-Payload analysis showed identical file sizes, suggesting the same binary was downloaded multiple times.
-
-![Initial Alert](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle1.jpg)
-![Chronicle Search Timeline](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle2.jpg)
-![Grouped Hosts](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle3.png)
-![Entity Extraction](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle4.png)
-![Payload Consistency](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle5.png)
-
-> 🟢 *Impact:* Rapidly identified the malicious pattern and confirmed multiple infected hosts — turning a single alert into a coordinated campaign discovery.
+These ensure accountability and workflow visibility during the triage.
 
 ---
 
-### 🕵️‍♂️ 2. Building the Case – From Alert to Investigation
-To formalize the investigation, I created a new case in Chronicle named **Suspicious Macro Activity.**  
-Chronicle automatically correlated all related entities — users, domains, hashes, and processes — and generated a **Case Graph**.
-
-The visual map linked  
-`Outlook.exe → Excel.exe → manygoodnews.com`  
-showing both infected machines with high risk scores (95).  
-Timeline correlation confirmed the process execution order.
-
-![Case Overview](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle6.png)
-![Case Graph View](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle7.png)
-![Risk Overlay](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle8.png)
-![Timeline Correlation](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle9.png)
-
-> 🟢 *Impact:* Consolidated raw telemetry into an attack storyline — revealing process lineage and victim endpoints clearly.
+### 🌐 Step 4: Entity Correlation  
+![Chronicle5](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle5.png)  
+The **Entities Highlights** section mapped all relevant data points:
+- User, host, processes, IPs, domains, MITRE technique, and file hashes.
+- `STEVE-WATSON-PC` and internal IP `10.205.11.20` repeatedly appeared, confirming localized infection attempts.
 
 ---
 
-### ⚙️ 3. Understanding the Detection – Peering Behind the Rule
-I examined the detection rule responsible for the alert.  
-The rule logic combined **process creation** with **network requests containing `.exe`**, aligning with **MITRE ATT&CK T1204: User Execution**.  
-Running a retrohunt across 30 days showed multiple identical detections — proof of an ongoing campaign.
-
-![Detection Rule](images/Chronicle10.png)
-![Detections List](images/Chronicle11.png)
-![Raw Event Inspection](images/Chronicle12.png)
-
-> 🟢 *Impact:* Validated the rule design and identified long-term activity patterns, confirming this wasn’t an isolated event.
+### 🧠 Step 5: Visual Attack Graph  
+![Chronicle6](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle6.png)  
+![Chronicle7](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle7.png)  
+Chronicle’s **graph view** linked the entire chain:
+`STEVE-WATSON → EXCEL.EXE → manygoodnews.com → 208.91.197.46`  
+Red nodes highlighted confirmed malicious entities, showing that **multiple hosts** accessed the same infected source.
 
 ---
 
-### 🤖 4. Automating Response – Designing the SOAR Playbook
-To eliminate repetitive analyst work, I built an automated playbook in **Chronicle SOAR**.
-
-**Playbook Flow:**  
-1️⃣ Trigger: *Alert Type = Virus*  
-2️⃣ Mandiant Threat Intelligence – *Enrich IOCs*  
-3️⃣ Mandiant Threat Intelligence – *Enrich Entities*  
-4️⃣ Create Entity Relationships  
-
-Each enrichment step fetched context (malware family, threat actor, severity) and automatically linked entities inside the case graph.
-
-![Playbook Canvas](images/Chronicle13.png)
-![Trigger Configuration](images/Chronicle14.png)
-![Mandiant IOC Enrichment](images/Chronicle15.png)
-![Mandiant Entity Enrichment](images/Chronicle16.png)
-![Create Entity Relationships](images/Chronicle17.png)
-![Flow Overview](images/Chronicle18.png)
-
-> 🟢 *Impact:* Created a scalable, reusable automation that instantly enriches every new alert — reducing manual triage time by ~80%.
+### 🎯 Step 6: Target Entities and Response Actions  
+![Chronicle8](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle8.png)  
+The **Target Entities panel** allowed quick decision-making:  
+Analysts could choose to investigate host activity, escalate to the SOC manager, or inform the customer.
 
 ---
 
-### 🧪 5. Testing & Simulation – Validating the Automation
-Before deploying, I tested the playbook using **Simulator Mode** in Chronicle SOAR.  
-The simulated alert executed all enrichment actions successfully.  
-Mandiant intelligence revealed that the file hash was associated with **Sandworm Team**, a known APT group.
+### 🧩 Step 7: Process and DNS Evidence  
+![Chronicle9](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle9.png)  
+![Chronicle10](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle10.png)  
+CrowdStrike Falcon logs confirmed:
+- A **process start event** on `STEVE-WATSON-PC`.
+- `5 DNS requests` to suspicious domains from the same asset (`mikeross-pc` also appeared laterally).
 
-I added widgets for **Entities**, **Insights**, and **JSON output** to create a unified analyst dashboard.
-
-![Playbook Simulation](images/Chronicle19.png)
-![Simulation Results](images/Chronicle20.png)
-![Analyst Test View](images/Chronicle22.png)
-
-> 🟢 *Impact:* Confirmed the automation logic and delivered instant threat attribution — empowering Tier-1 analysts with context at first glance.
+This validated both **endpoint and network correlation**, confirming that the macro-initiated Excel process communicated with an external malware domain.
 
 ---
 
-### 🧰 6. Simulating Real Cases – Cross-Environment Validation
-To ensure the automation was production-ready, I ran **case simulations** across different environments (Healthcare, Finance, Retail).  
-Each environment produced identical automated results: entity enrichment, relationship mapping, and actionable insights.
+### ✅ Summary  
+This investigation revealed a **macro-enabled Office attack** that executed `Excel.exe` to fetch malicious payloads.  
+Through Chronicle’s AI triage, entity graphing, and event correlation:
+- The SOC team quickly traced infection sources.  
+- Containment actions were initiated (quarantine, IP/domain block).  
+- Cross-host evidence confirmed propagation risk, prompting escalation.
 
-![Simulate Case Interface](images/chronicle23.png)
-![Case Created](images/chronicle24.png)
-![Environment Validation](images/Chronicle25.png)
-
-> 🟢 *Impact:* Proved that the playbook is environment-agnostic and scalable for multi-tenant SOC operations.
-
----
-
-### 📊 7. Seeing the Bigger Picture – Chronicle Dashboards
-With the automation running, I switched to **Context Aware Risk Dashboards**.  
-The risk graph displayed spikes between **Nov 14 – 19**, aligning perfectly with infection events.  
-The **Personal Dashboard** summarized ingestion volume (108 K events, 734 alerts).
-
-![Context Aware Risk Dashboard](images/Chronicle42.png)
-![Personal Dashboard Summary](images/Chronicle44.png)
-
-> 🟢 *Impact:* Translated technical detections into strategic metrics that leadership can understand — bridging analytics and business risk.
-
----
-
-### 📈 8. Reporting & Closure – Communicating Results
-Finally, I generated **SOAR Reports** for all audiences:  
-- **Tier-1:** Case status and enrichment results  
-- **SOC Managers:** Playbook execution metrics  
-- **Executives:** ROI, automation savings, and MTTR reduction  
-
-Reports were exported automatically to PDF with case graphs and insights attached.
-
-![Reports Dashboard](images/Chronicle52.png)
-![Final SOAR Report](images/Chronicle63.png)
-
-> 🟢 *Impact:* Delivered a full end-to-end operational narrative — from detection to remediation, supported by measurable metrics.
-
----
-
-## 🏁 Final Results
-
-| Metric | Outcome |
-|---------|----------|
-| **Detection Accuracy** | Multi-signal correlation reduced false positives by > 60 %. |
-| **Automation ROI** | Enrichment and triage time cut by ≈ 80 %. |
-| **MTTR** | Response improved from ~3 hours → 15 minutes. |
-| **Cross-Environment Validation** | Playbook succeeded across 3 demo tenants. |
-| **Reporting Value** | Automated dashboards provided continuous executive visibility. |
-
----
-
-## 🧰 Tools & Skills
-
-| Category | Tools / Skills |
-|-----------|----------------|
-| **SIEM & SOAR** | Google Chronicle SIEM, Chronicle SOAR |
-| **Threat Intel** | Mandiant Threat Intelligence, VirusTotal |
-| **Automation** | SOAR Playbooks, Entity Relationships, Simulators |
-| **Frameworks** | MITRE ATT&CK (T1204), Cyber Kill Chain |
-| **Reporting** | SOAR Reports, Context Aware Dashboards |
-| **Soft Skills** | Analytical Investigation, Process Design, Executive Communication |
-
----
-
-## 💡 Why It Matters
-This project demonstrates both **technical mastery** of Chronicle’s SIEM + SOAR ecosystem and the **analyst mindset** required to transform raw telemetry into strategic insight.  
-From detection to automation, it shows how a single alert can evolve into a repeatable, self-learning defense workflow.
-
----
-
-## 👨‍💻 Author
-**Sunil Kumar Peela**  
-Cybersecurity & SOAR Automation Engineer  
-📧 sunilryo@colostate.edu | 🔗 [LinkedIn](https://linkedin.com/in/sunilkumarpeela) | [GitHub](https://github.com/SunilKumarPeela)
-
----
-
-⭐ *If you found this project inspiring, give it a star and share!* ⭐
+> The story of this case shows Chronicle’s power to transform raw telemetry into a clear, visualized threat narrative.
