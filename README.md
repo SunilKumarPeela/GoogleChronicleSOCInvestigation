@@ -249,7 +249,7 @@ Each event logs **Excel.exe launching via Outlook** followed by an **HTTP reques
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle35.png)  
 
-## 🚨 Phase 3: Threat Rule Validation and Cross-System Correlation  
+## 🚨 Phase 4: Threat Rule Validation and Cross-System Correlation  
 
 In **Phase 3**, the investigation transitioned from endpoint-level evidence to rule-level intelligence validation — confirming how the attack pattern was identified, triggered, and correlated across multiple telemetry sources within Google Chronicle.  
 
@@ -281,7 +281,7 @@ This validation ensured the rule effectively captures malicious macro download c
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle40.png) 
 
-## 🌍 Phase 4: SIEM Dashboard Correlation and Post-Incident Analytics  
+## 🌍 Phase 5: SIEM Dashboard Correlation and Post-Incident Analytics  
 
 In **Phase 4**, the investigation advanced into **SOC-level visualization and cross-environment analytics**, leveraging Chronicle’s SIEM dashboards to confirm the organization’s detection health, log integrity, and correlated threat visibility after the macro-based compromise.  
 
