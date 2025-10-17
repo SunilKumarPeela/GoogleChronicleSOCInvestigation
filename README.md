@@ -200,11 +200,17 @@ The process was flagged by **CrowdStrike Falcon** and linked to downloads from *
 
 And then moved to the Chronicle case graph which shows the full infection path — manygoodnews.com hosted the malicious file Client%20Update.exe, downloaded on mikeross-pc via Outlook-triggered Excel execution.
 
-![Chronicle21](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle22.png)  
+![Chronicle22](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle22.png)  
 
 And It shows both alerts marked Critical (Risk Score 95), confirming a coordinated malware download detected under the “suspicious_download_office” rule.
 
-![Chronicle21](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle23.png)  
----
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle23.png)  
 
+---
+### 🧠 Step 19: Domain Investigation — Chronicle SIEM Lookup on `manygoodnews.com`  
+
+Next, I pivoted into **Google Chronicle’s SIEM search** to investigate the domain `manygoodnews.com`.  
+The lookup revealed it was registered in Japan under **GMO Internet Group**, linked to multiple alerts and flagged in **VirusTotal (10/88 detections)** — confirming it as a **known malicious host** used in the infection chain.
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle24.png)  
 
