@@ -336,7 +336,58 @@ It proved that the SOC pipeline is **response-ready** and capable of ingesting a
 
 ---
 
-### ✅ Phase 5 Summary  
-By performing this simulation, I validated Chronicle’s **end-to-end detection, ingestion, and automation pipeline**.  
-The test ensured that alerts from both macro-based malware and endpoint antivirus detections are correlated, enriched, and visualized in real time — confirming **SOC operational readiness** and effective **multi-environment defense validation**.
+## ⚙️ Phase 7: Playbook Automation — Integrating Threat Intelligence with Mandiant  
+
+In the next stage of the investigation, I transitioned from manual case correlation to **automated incident response** by building a new Chronicle **SOAR playbook**.  
+This playbook was designed to automatically enrich alerts like *Virus Found or Security Risk Found* using **Mandiant Threat Intelligence**, closing the loop between detection and contextual threat validation.
+
+---
+
+### 🧠 Step 28: Creating a New Playbook Environment  
+I began by creating a **new playbook** under the *SecOps Training* folder in Chronicle, selecting the **Default Environment** to ensure consistency with the previous test simulations.  
+This setup provides an isolated space where I can safely develop, test, and refine automated workflows before production deployment.  
+
+![Chronicle49](https://github.com/SunilKumarPeela/cyberimages/blob/main/Screenshot%202025-10-15%20Chronicle49153800.png)  
+
+---
+
+### 🧩 Step 29: Defining the Trigger — Virus Alert Type  
+I configured the trigger condition using the **Alert Type** module, specifying “Virus” as the parameter.  
+This ensures the playbook activates automatically whenever a virus-related detection (like *Symantec EP Risk File*) appears in Chronicle’s case queue.  
+
+![Chronicle50](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle50.png)  
+
+---
+
+### 🔗 Step 30: Integrating Mandiant Threat Intelligence  
+Next, I added the **MandiantThreatIntelligence** action to the workflow.  
+This module retrieves detailed **IOC enrichment, malware attributes, and related entity context** directly from Mandiant’s global threat intelligence feed, providing analysts with instant insight into the detected malware’s origin, TTPs, and prevalence.  
+
+![Chronicle51](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle51.png)  
+![Chronicle52](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle52.png)  
+
+---
+
+### ⚙️ Step 31: Configuring IOC Enrichment Parameters  
+I set the enrichment parameters to **analyze all file hashes** related to the detection and mapped them to the entity identifiers within Chronicle.  
+This allows the playbook to automatically pull malware reports, related threat actors, and network indicators from Mandiant whenever a new case is ingested.  
+
+![Chronicle53](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle53.png)  
+
+---
+
+### 🚀 Step 32: Running and Validating the Automation Flow  
+After saving and enabling the **Simulator**, I ran the playbook linked to the “Virus Found or Security Risk Found” case.  
+The playbook successfully executed the enrichment steps, validating the connection between **Chronicle SOAR** and **Mandiant Threat Intelligence**.  
+As a result, every new virus detection now automatically enriches its context with verified IOC intelligence — accelerating triage and reducing analyst workload.  
+
+![Chronicle54](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle54.png)  
+![Chronicle55](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle55.png)  
+
+---
+
+### ✅ Phase 6 Summary  
+Through this automation, I’ve operationalized the SOC workflow by linking **detection → enrichment → intelligence validation** in real time.  
+This playbook now acts as a live bridge between Chronicle and Mandiant, ensuring every malware or virus alert receives instant contextual enrichment — enhancing precision, speed, and intelligence-driven decision-making within the SOC.
+
 
