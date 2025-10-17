@@ -409,6 +409,7 @@ This linkage provides an immediate visual relationship map between the malware h
 | **Target Identifier** | [Entity.Identifier] |
 
 ![Chronicle57](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle57.png)  
+
 ![Chronicle58](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle58.png)  
 
 ---
@@ -432,7 +433,9 @@ The JSON output confirmed that the IOC hash was successfully associated with the
   }
 }
 ```
+![Chronicle57](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle59.png) 
 
+![Chronicle58](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle60.png) 
 
 
 
