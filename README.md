@@ -249,6 +249,12 @@ Each event logs **Excel.exe launching via Outlook** followed by an **HTTP reques
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle35.png)  
 
+## 🚨 Phase 3: Threat Rule Validation and Cross-System Correlation  
+
+In **Phase 3**, the investigation transitioned from endpoint-level evidence to rule-level intelligence validation — confirming how the attack pattern was identified, triggered, and correlated across multiple telemetry sources within Google Chronicle.  
+
+---
+
 ### 🧠 Step 22: Deep Process Telemetry — Verifying Execution and Payload Source  
 The **Process_Launch log** from Tanium Stream confirms that **Excel.exe** was executed by **Outlook.exe** on both `steve-watson-pc` and `mikeross-pc`, sharing the same **parent PID (22895)**.  
 The telemetry shows identical **file paths** and **MD5 hashes**, proving both systems executed the same malicious Office payload.  
@@ -274,3 +280,4 @@ YARA-L **Retrohunt** runs confirmed its accuracy across historical data with no 
 This validation ensured the rule effectively captures malicious macro download chains in real time, providing high-confidence detection and automated alerting for similar future threats.
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle40.png) 
+
