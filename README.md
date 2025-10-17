@@ -387,9 +387,52 @@ As a result, every new virus detection now automatically enriches its context wi
 ![Chronicle55](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle55.png)  
 
 ---
+## 🧠 Phase 8 — Automated IOC Enrichment & Relationship Mapping in Chronicle SOAR
 
-### ✅ Phase 6 Summary  
-Through this automation, I’ve operationalized the SOC workflow by linking **detection → enrichment → intelligence validation** in real time.  
-This playbook now acts as a live bridge between Chronicle and Mandiant, ensuring every malware or virus alert receives instant contextual enrichment — enhancing precision, speed, and intelligence-driven decision-making within the SOC.
+### ⚙️ Step 33: Initiating Mandiant IOC Enrichment  
+I enhanced the Chronicle SOAR playbook by integrating **Mandiant Threat Intelligence** for automatic IOC enrichment.  
+This configuration ensures that every detected file hash or suspicious entity is automatically enriched with contextual threat intelligence — including associated malware families, campaigns, and known threat actors.  
+
+![Chronicle56](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle56.png)  
+
+---
+
+### 🧩 Step 34: Creating Dynamic Entity Relationships  
+Next, I added a **Create Entity Relationships** action in the playbook to establish links between enriched entities and identified threat actors.  
+This linkage provides an immediate visual relationship map between the malware hash and its attributed actor.  
+
+| Parameter | Value |
+|------------|--------|
+| **Entity Type** | Threat Actor |
+| **Connect As** | Linked |
+| **Target Entity Type** | File Hash |
+| **Target Identifier** | [Entity.Identifier] |
+
+![Chronicle57](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle57.png)  
+![Chronicle58](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle58.png)  
+
+---
+
+### 🔍 Step 35: Verifying Enrichment Results  
+After running the automation, I validated the enrichment outcome from the **Technical Details** tab.  
+The JSON output confirmed that the IOC hash was successfully associated with the **Sandworm Team**, confirming that Mandiant TI enrichment and relationship mapping were functioning accurately.  
+
+```json
+{
+  "Entity": "26E2A41F26A8B85BF409982CB823FFD1",
+  "EntityResult": {
+    "associated_hashes": [],
+    "attributed_associations": [
+      {
+        "id": "threat-actor-90e0b712-64ee-5079-990c-se118ad53f1",
+        "name": "Sandworm Team",
+        "type": "threat-actor"
+      }
+    ]
+  }
+}
+```
+
+
 
 
