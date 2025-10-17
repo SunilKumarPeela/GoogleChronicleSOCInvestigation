@@ -215,9 +215,14 @@ The lookup revealed it was registered in Japan under **GMO Internet Group**, lin
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle24.png)  
 
 After confirming the domain’s malicious background, I ran a UDM search query in Chronicle to correlate network events tied to manygoodnews.com.
+
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle25.png)  
+
 The results showed multiple HTTP and DNS alerts from both mikeross-pc and steve-watson-pc, each downloading files around 514,605 bytes, indicating identical payloads.
 Chronicle’s pivot and event viewer confirmed synchronized activity across both hosts, proving coordinated infection timing.
+
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle26.png)  
+
 This correlation validated that the same macro-triggered malware spread through shared Office attachments within the network.
+
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle27.png)  
