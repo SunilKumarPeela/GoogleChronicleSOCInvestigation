@@ -187,12 +187,24 @@ Finally, I executed a **UDM Query** for process and DNS artifacts.
 This indicated that **another internal endpoint** communicated with the same malicious domain — proof of **lateral exposure**.  
 
 ---
+## ⚡ Phase 3 — Endpoint Telemetry & Final Correlation in Google Chronicle  
 
-### ✅ Investigation Closure Summary  
-After combining Chronicle’s **event correlation**, **VirusTotal reputation**, and **Mandiant enrichment**, I concluded that:
-- `Excel.exe` was exploited by a macro to download a payload from **manygoodnews.com**.  
-- The payload was a **Windows loader**, confirmed by multiple vendors.  
-- Several hosts attempted outbound communication to the same IOC.  
-- Automation via **Chronicle SOAR** executed containment, blocking the domain/IP and alerting EDR to quarantine affected processes.  
+After confirming cross-host involvement, I pivoted deeper into **endpoint telemetry** to trace the **execution chain** that initiated the macro-based infection.
 
-> This marks the closure of the macro-based threat chain — a clear demonstration of how Chronicle integrates **multi-source telemetry, MITRE mapping, and SOAR automation** into a seamless investigation workflow.
+---
+
+### 🧩 Step 18: Process Chain Validation — Outlook → Excel Execution  
+![Chronicle21](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle21.png)  
+This log shows **Outlook.exe launching Excel.exe** on **`mikeross-pc`**, a classic indicator of a **malicious email attachment executing a macro payload**.  
+The process was flagged by **CrowdStrike Falcon** and linked to downloads from **`manygoodnews.com`**, confirming a **suspicious Office-based infection chain**.
+
+And then moved to the Chronicle case graph which shows the full infection path — manygoodnews.com hosted the malicious file Client%20Update.exe, downloaded on mikeross-pc via Outlook-triggered Excel execution.
+
+![Chronicle21](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle22.png)  
+
+And It shows both alerts marked Critical (Risk Score 95), confirming a coordinated malware download detected under the “suspicious_download_office” rule.
+
+![Chronicle21](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle23.png)  
+---
+
+
