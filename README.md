@@ -228,3 +228,17 @@ Chronicle’s pivot and event viewer confirmed synchronized activity across both
 This correlation validated that the same macro-triggered malware spread through shared Office attachments within the network.
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle27.png)  
+
+### 🧠 Step 20: Pivot Analysis & Alert Verification — Confirming Data Exfiltration Behavior  
+To validate the infection’s impact, I performed a **pivot analysis** in Chronicle, grouping results by hostname, user, and network activity fields.  
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle28.png)  
+
+The **pivot results** revealed identical **HTTP alert events** from both `mikeross-pc` and `steve-watson-pc`, each receiving data packets of **514,605 bytes**, suggesting consistent payload size. 
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle29.png)  
+
+In the **Alerts tab**, a single high-risk event titled *“suspicious_download_office”* was flagged with a **risk score of 95 (Critical)**, confirming active communication with `manygoodnews.com`.  
+This consolidated evidence verified that both endpoints were participating in **the same malicious download session**, reinforcing the **macro-based data exfiltration attempt**.
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle30.png)  
