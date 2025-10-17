@@ -242,3 +242,12 @@ In the **Alerts tab**, a single high-risk event titled *“suspicious_download_o
 This consolidated evidence verified that both endpoints were participating in **the same malicious download session**, reinforcing the **macro-based data exfiltration attempt**.
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle30.png)  
+
+### 🧩 Step 21: Detection Overview — Confirming Consistent Macro-Based Triggers  
+The **Detection Dashboard** shows multiple alerts under the rule *“suspicious_download_office”* triggered on both `mikeross-pc` and `steve-watson-pc`.  
+Each event logs **Excel.exe launching via Outlook** followed by an **HTTP request to manygoodnews.com**, confirming repeated macro-triggered download attempts across endpoints.
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle35.png)  
+
+
+
