@@ -214,6 +214,8 @@ The lookup revealed it was registered in Japan under **GMO Internet Group**, lin
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle24.png)  
 
+### 🧩 Step 19: Network Correlation — UDM Query and Cross-Host Activity Validation  
+
 After confirming the domain’s malicious background, I ran a UDM search query in Chronicle to correlate network events tied to manygoodnews.com.
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle25.png)  
