@@ -249,5 +249,15 @@ Each event logs **Excel.exe launching via Outlook** followed by an **HTTP reques
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle35.png)  
 
+### 🧠 Step 22: Deep Process Telemetry — Verifying Execution and Payload Source  
+The **Process_Launch log** from Tanium Stream confirms that **Excel.exe** was executed by **Outlook.exe** on both `steve-watson-pc` and `mikeross-pc`, sharing the same **parent PID (22895)**.  
+The telemetry shows identical **file paths** and **MD5 hashes**, proving both systems executed the same malicious Office payload.  
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle36.png)  
+
+This consistent process linkage validates that the macro-based infection originated from a **common Outlook-delivered Excel attachment**.
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle37.png) 
+
 
 
