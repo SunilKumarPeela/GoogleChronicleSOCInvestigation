@@ -438,4 +438,24 @@ The JSON output confirmed that the IOC hash was successfully associated with the
 ![Chronicle58](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle60.png) 
 
 
+### 🧠 Step 36: Creating a Custom Analyst View  
+To enhance visibility and streamline monitoring, I created a **custom analyst view** titled `Test` under the **Administrator** role.  
+This view consolidates the most relevant intelligence widgets into a single dashboard, providing real-time insight into enriched IOCs and correlated threat actor data.  
+ 
+
+> 🧭 This unified dashboard allows SOC analysts to quickly interpret enrichment results, identify attack origins, and prioritize responses within Chronicle SOAR.
+
+![Chronicle61](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle61.png)  
+![Chronicle62](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle62.png)  
+
+---
+
+### 📊 Step 37: Generating SOC and ROI Reports  
+To measure automation efficiency and enrichment accuracy, I navigated to **SOAR → Reports** and generated pre-built **SOC performance and ROI reports**.  
+
+
+
+> 📡 These Chronicle SOAR reports provide measurable insight into the **impact of automation**, **enrichment success rate**, and **analyst workload reduction**, validating the value of integrating Mandiant TI with Chronicle workflows.
+
+![Chronicle63](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle63.png)  
 
