@@ -384,6 +384,7 @@ The playbook successfully executed the enrichment steps, validating the connecti
 As a result, every new virus detection now automatically enriches its context with verified IOC intelligence — accelerating triage and reducing analyst workload.  
 
 ![Chronicle54](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle54.png)  
+
 ![Chronicle55](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle55.png)  
 
 ---
@@ -446,6 +447,7 @@ This view consolidates the most relevant intelligence widgets into a single dash
 > 🧭 This unified dashboard allows SOC analysts to quickly interpret enrichment results, identify attack origins, and prioritize responses within Chronicle SOAR.
 
 ![Chronicle61](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle61.png)  
+
 ![Chronicle62](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle62.png)  
 
 ---
@@ -459,3 +461,4 @@ To measure automation efficiency and enrichment accuracy, I navigated to **SOAR 
 
 ![Chronicle63](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle63.png)  
 
+---
