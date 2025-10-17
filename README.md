@@ -357,13 +357,15 @@ This ensures the playbook activates automatically whenever a virus-related detec
 
 ![Chronicle50](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle50.png)  
 
+![Chronicle51](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle51.png)
+
 ---
 
 ### 🔗 Step 30: Integrating Mandiant Threat Intelligence  
 Next, I added the **MandiantThreatIntelligence** action to the workflow.  
 This module retrieves detailed **IOC enrichment, malware attributes, and related entity context** directly from Mandiant’s global threat intelligence feed, providing analysts with instant insight into the detected malware’s origin, TTPs, and prevalence.  
 
-![Chronicle51](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle51.png)  
+  
 ![Chronicle52](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle52.png)  
 
 ---
