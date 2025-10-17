@@ -301,3 +301,42 @@ This panoramic SOC-level visibility validated that all detections, telemetry, an
 
 ![Chronicle43](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle43.png)
 
+## 🧩 Phase 6: Simulated SOC Response and Environment Validation  
+
+In this phase, I initiated a **SOC simulation process** to validate that Chronicle’s alerting and response mechanisms function correctly in a live environment.  
+My goal was to ensure the earlier *suspicious_download_office* detection chain seamlessly integrates with **real-time virus alerts**, automated ingestion, and multi-environment response scenarios.
+
+---
+
+### ⚙️ Step 25: Simulating Alert Workflow  
+I simulated a **“Virus Found or Security Risk Found”** alert inside Chronicle’s **Default Environment** to test the behavior of real incident ingestion.  
+This helped me confirm that Chronicle successfully captured and triaged alerts generated from integrated platforms like **Symantec** and **CrowdStrike**, creating a unified case for investigation.  
+
+![Chronicle44](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle44.png)  
+![Chronicle45](https://github.com/SunilKumarPeela/cyberimages/blob/main/chronicle45.png)  
+
+---
+
+### 🧠 Step 26: Validating Multi-Environment Simulation  
+Next, I simulated multiple cases across environments such as **Cymbal Health**, **Cymbal Insurance**, and **Default Environment**, to verify cross-environment detection handling.  
+I linked the **virus alert** with the ongoing *suspicious_download_office* case, validating that Chronicle correctly correlated both alerts under a single investigation path.  
+This confirmed that the SOC’s environment logic and correlation rules are fully functional across distributed sources.  
+
+![Chronicle46](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle46.png)  
+![Chronicle47](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle47.png)  
+
+---
+
+### 🧩 Step 27: Verifying Integration Setup and Response Automation  
+I then reviewed the **Integration Setup** section to ensure all modules — including **CSV ingestion, Email connectors, Enrichment, and Functions** — were configured properly within the Default Environment.  
+This verification was critical to confirm that automated alert enrichment and incident workflows operate without manual intervention.  
+It proved that the SOC pipeline is **response-ready** and capable of ingesting and correlating alerts instantly during real attacks or simulated exercises.  
+
+![Chronicle48](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle48.png)  
+
+---
+
+### ✅ Phase 5 Summary  
+By performing this simulation, I validated Chronicle’s **end-to-end detection, ingestion, and automation pipeline**.  
+The test ensured that alerts from both macro-based malware and endpoint antivirus detections are correlated, enriched, and visualized in real time — confirming **SOC operational readiness** and effective **multi-environment defense validation**.
+
