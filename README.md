@@ -281,3 +281,23 @@ This validation ensured the rule effectively captures malicious macro download c
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle40.png) 
 
+## 🌍 Phase 4: SIEM Dashboard Correlation and Post-Incident Analytics  
+
+In **Phase 4**, the investigation advanced into **SOC-level visualization and cross-environment analytics**, leveraging Chronicle’s SIEM dashboards to confirm the organization’s detection health, log integrity, and correlated threat visibility after the macro-based compromise.  
+
+---
+
+### 🌐 Step 24: SIEM Dashboard Correlation — Post-Incident Visibility  
+The Chronicle **SIEM Dashboards** provided end-to-end operational insight linking directly to the earlier *suspicious_download_office* incident.  
+The **Data Ingestion and Health** dashboard verified smooth telemetry flow from diverse log sources — including **WinEventLog**, **Sysmon**, **PowerShell**, and **AWS CloudTrail** — with **zero ingestion errors** and over **108K normalized events**, confirming that all relevant data for forensic validation was captured accurately.  
+
+![Chronicle41](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle41.png)  
+
+The **Context-Aware Detections – Risk** dashboard surfaced the same compromised entities — `steve-watson-pc`, `mikeross-pc`, and `manygoodnews.com` — now marked under **Critical Risk**, proving the Chronicle rule maintained continuous correlation and risk scoring across the event lifecycle.  
+
+![Chronicle42](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle42.png)
+Finally, the **Global IOC Threat Map** reflected a surge in alerts (**734 total**, +716 from baseline) and elevated ingestion throughput (**0.2 GB processed**), visually confirming active monitoring of related malicious IPs worldwide.  
+This panoramic SOC-level visibility validated that all detections, telemetry, and IOC activity remained synchronized and transparent across Chronicle’s analytics layers — completing the full incident correlation chain from detection to organizational awareness.  
+
+![Chronicle43](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle43.png)
+
