@@ -259,5 +259,18 @@ This consistent process linkage validates that the macro-based infection origina
 
 ![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle37.png) 
 
+### ⚙️ Step 23: Rule Validation and Logic Confirmation  
 
+the **“suspicious_download_office”** detection rule was reviewed and validated within Google Chronicle’s **Rules & Detections** panel.  
+The rule, authored by *Google Cloud Security*, is configured as **Critical severity** and set to trigger on **multiple correlated events** combining both **PROCESS_LAUNCH** and **NETWORK_HTTP** telemetry.  
 
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle38.png) 
+
+It specifically detects Office applications downloading executable files (`.exe`) or unusually large payloads (>100KB), matching **MITRE ATT&CK technique T1204.001 — User Execution: Malicious Link**.  
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle39.png) 
+
+YARA-L **Retrohunt** runs confirmed its accuracy across historical data with no false positives.  
+This validation ensured the rule effectively captures malicious macro download chains in real time, providing high-confidence detection and automated alerting for similar future threats.
+
+![Chronicle23](https://github.com/SunilKumarPeela/cyberimages/blob/main/Chronicle40.png) 
